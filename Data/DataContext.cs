@@ -26,22 +26,22 @@ namespace API.Data
             ).HasForeignKey(s => s.SourceUserId).OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<UserLike>().HasOne(
-                s => s.LikedUser
-            ).WithMany(
-                l => l.LikedByUsers
-            ).HasForeignKey(s => s.LikedUserId)
-            .OnDelete(DeleteBehavior.Cascade);
+                    s => s.LikedUser
+                ).WithMany(
+                    l => l.LikedByUsers
+                ).HasForeignKey(s => s.LikedUserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             builder.Entity<Message>()
-            .HasOne(u => u.Recipient)
-            .WithMany(m => m.MessagesReceived)
-            .OnDelete(DeleteBehavior.Restrict);
+                .HasOne(u => u.Recipient)
+                .WithMany(m => m.MessagesReceived)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Message>()
-            .HasOne(u => u.Sender)
-            .WithMany(m => m.MessagesSent)
-            .OnDelete(DeleteBehavior.Restrict);
+                .HasOne(u => u.Sender)
+                .WithMany(m => m.MessagesSent)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
